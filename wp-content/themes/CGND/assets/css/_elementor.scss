@@ -1,0 +1,42 @@
+@import "responsive";
+
+.section-title {
+    display: flex;
+    align-items: center;
+
+    .elementor-heading-title {
+        font-family: "VL Sofia Pro Soft", sans-serif;
+        font-weight: bold;
+    }
+}
+
+.elementor-post {
+    .elementor-post__title a {
+        font-family: "VL Sofia Pro Soft", sans-serif;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.quote-cuoi-col {
+    .elementor-section {
+        height: calc(100% - 64px);
+        overflow: hidden;
+        padding: 1rem .5rem;
+    }
+
+    .elementor-heading-title {
+        font-family: $primary-font;
+        font-weight: bold;
+    }
+}
+
+.featured-photo {
+    .elementor-carousel-image {
+        border: 3px solid $primary-color;
+        border-radius: 10px;
+    }
+}

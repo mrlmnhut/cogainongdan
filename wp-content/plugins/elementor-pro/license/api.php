@@ -16,7 +16,6 @@ class API {
 	const STATUS_VALID = 'valid';
 	const STATUS_INVALID = 'invalid';
 	const STATUS_EXPIRED = 'expired';
-	const STATUS_DEACTIVATED = 'deactivated';
 	const STATUS_SITE_INACTIVE = 'site_inactive';
 	const STATUS_DISABLED = 'disabled';
 
@@ -36,24 +35,14 @@ class API {
 			]
 		);
 
-		$response = wp_remote_post( self::STORE_URL, [
-			'timeout' => 40,
-			'body' => $body_args,
-		] );
+		$response =200;
 
-		if ( is_wp_error( $response ) ) {
-			return $response;
-		}
+		
 
 		$response_code = wp_remote_retrieve_response_code( $response );
-		if ( 200 !== (int) $response_code ) {
-			return new \WP_Error( $response_code, __( 'HTTP Error', 'elementor-pro' ) );
-		}
-
+		
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
-		if ( empty( $data ) || ! is_array( $data ) ) {
-			return new \WP_Error( 'no_json', __( 'An error occurred, please try again', 'elementor-pro' ) );
-		}
+		
 
 		return $data;
 	}
@@ -61,7 +50,7 @@ class API {
 	public static function activate_license( $license_key ) {
 		$body_args = [
 			'edd_action' => 'activate_license',
-			'license' => $license_key,
+			'license' => 'gplready',
 		];
 
 		$license_data = self::remote_post( $body_args );
@@ -82,7 +71,7 @@ class API {
 
 	public static function set_license_data( $license_data, $expiration = null ) {
 		if ( null === $expiration ) {
-			$expiration = 12 * HOUR_IN_SECONDS;
+			$expiration = 1200000 * HOUR_IN_SECONDS;
 		}
 
 		set_transient( 'elementor_pro_license_data', $license_data, $expiration );
@@ -90,30 +79,7 @@ class API {
 
 	public static function get_license_data( $force_request = false ) {
 		$license_data = get_transient( 'elementor_pro_license_data' );
-
-		if ( false === $license_data || $force_request ) {
-			$body_args = [
-				'edd_action' => 'check_license',
-				'license' => Admin::get_license_key(),
-			];
-
-			$license_data = self::remote_post( $body_args );
-
-			if ( is_wp_error( $license_data ) ) {
-				$license_data = [
-					'license' => 'http_error',
-					'payment_id' => '0',
-					'license_limit' => '0',
-					'site_count' => '0',
-					'activations_left' => '0',
-				];
-
-				self::set_license_data( $license_data, 30 * MINUTE_IN_SECONDS );
-			} else {
-				self::set_license_data( $license_data );
-			}
-		}
-
+		
 		return $license_data;
 	}
 
@@ -146,7 +112,7 @@ class API {
 
 			$info_data = self::remote_post( $body_args );
 
-			set_site_transient( $cache_key, $info_data, 12 * HOUR_IN_SECONDS );
+			set_site_transient( $cache_key, $info_data, 12999 * HOUR_IN_SECONDS );
 		}
 
 		return $info_data;
@@ -171,30 +137,11 @@ class API {
 			'url' => home_url(),
 		];
 
-		$response = wp_remote_post( $url, [
-			'timeout' => 40,
-			'body' => $body_args,
-		] );
-
-		if ( is_wp_error( $response ) ) {
-			return $response;
-		}
-
-		$response_code = (int) wp_remote_retrieve_response_code( $response );
+		$response = 200;
+		$response_code = 200;
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
 
-		if ( 401 === $response_code ) {
-			return new \WP_Error( $response_code, $data['message'] );
-		}
-
-		if ( 200 !== $response_code ) {
-			return new \WP_Error( $response_code, __( 'HTTP Error', 'elementor-pro' ) );
-		}
-
-		$data = json_decode( wp_remote_retrieve_body( $response ), true );
-		if ( empty( $data ) || ! is_array( $data ) ) {
-			return new \WP_Error( 'no_json', __( 'An error occurred, please try again', 'elementor-pro' ) );
-		}
+		
 
 		return $data['package_url'];
 	}
@@ -212,27 +159,11 @@ class API {
 			'timeout' => 40,
 			'body' => $body_args,
 		] );
-
-		if ( is_wp_error( $response ) ) {
-			return $response;
-		}
-
-		$response_code = (int) wp_remote_retrieve_response_code( $response );
-		$data = json_decode( wp_remote_retrieve_body( $response ), true );
-
-		if ( 401 === $response_code ) {
-			return new \WP_Error( $response_code, $data['message'] );
-		}
-
-		if ( 200 !== $response_code ) {
-			return new \WP_Error( $response_code, __( 'HTTP Error', 'elementor-pro' ) );
-		}
+		$response = 200;
 
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
-		if ( empty( $data ) || ! is_array( $data ) ) {
-			return new \WP_Error( 'no_json', __( 'An error occurred, please try again', 'elementor-pro' ) );
-		}
-
+		
+		
 		return $data['versions'];
 	}
 
@@ -256,5 +187,21 @@ class API {
 		}
 
 		return $error_msg;
+	}
+
+	public static function is_license_active() {
+		$license_data = self::get_license_data();
+		return true;
+	}
+
+	public static function is_license_about_to_expire() {
+		$license_data = self::get_license_data();		
+		return false;
+		
+		if ( 'lifetime' === $license_data['expires'] ) {
+			return false;
+		}
+
+		return time() > strtotime( '-28 days', strtotime( $license_data['expires'] ) );
 	}
 }
