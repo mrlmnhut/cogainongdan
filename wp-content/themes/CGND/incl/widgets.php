@@ -21,36 +21,18 @@ function widgets(){
     ]);
     
     register_sidebar([
-        'name'          => 'Footer Left Widget',
-        'id'            => 'footer_left_widget',
-        'before_widget' => '<div id="%1$s" class="widget %2$s footer-left-widget">',
+        'name'          => 'Subcription Form Widget',
+        'id'            => 'subcription_form_widget',
+        'before_widget' => '<div id="%1$s" class="widget %2$s subcription-form-widget">',
         'after_widget'  => '</div>',
         'before_title'  => '<h4 class="title">',
         'after_title'   => '</h4>',
     ]);
     
     register_sidebar([
-        'name'          => 'Registration Post Form Widget',
-        'id'            => 'registration_post_form_widget',
-        'before_widget' => '<div id="%1$s" class="widget %2$s registration-post-form-widget">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h4 class="title">',
-        'after_title'   => '</h4>',
-    ]);
-    
-    register_sidebar([
-        'name'          => 'Footer Menu Widget',
-        'id'            => 'footer_menu_widget',
-        'before_widget' => '<div id="%1$s" class="widget %2$s footer-menu-widget">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h4 class="title">',
-        'after_title'   => '</h4>',
-    ]);
-    
-    register_sidebar([
-        'name'          => 'Fanpage Widget',
-        'id'            => 'fanpage_widget',
-        'before_widget' => '<div id="%1$s" class="widget %2$s fanpage-widget">',
+        'name'          => 'Footer Social Widget',
+        'id'            => 'footer_social_widget',
+        'before_widget' => '<div id="%1$s" class="widget %2$s footer-social-widget">',
         'after_widget'  => '</div>',
         'before_title'  => '<h4 class="title">',
         'after_title'   => '</h4>',
