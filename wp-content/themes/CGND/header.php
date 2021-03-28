@@ -9,6 +9,8 @@
 	<?php wp_head(); ?>
     <link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/assets/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/assets/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/assets/vendor/slick/slick.css"/>
+    <link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/assets/vendor/slick/slick-theme.css"/>
     <link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/assets/css/main.css">
 </head>
 

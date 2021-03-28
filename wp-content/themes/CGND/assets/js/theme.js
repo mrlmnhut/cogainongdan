@@ -22,5 +22,18 @@ jQuery(function ($) {
                 }
             });
         }
+        $('.slick-gallery').slick({
+            centerMode: true,
+            centerPadding: '25%',
+            slidesToShow: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+        });
+        $('.slick-event-hot').slick({
+            dots: false,
+            arrows: false,
+            autoplay: true,
+            autoplaySpeed: 2000,
+        });
     });
 })

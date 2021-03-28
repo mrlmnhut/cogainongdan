@@ -21,18 +21,18 @@ function widgets(){
     ]);
     
     register_sidebar([
-        'name'          => 'Subcription Form Widget',
-        'id'            => 'subcription_form_widget',
-        'before_widget' => '<div id="%1$s" class="widget %2$s subcription-form-widget">',
+        'name'          => 'Footer Top Widget',
+        'id'            => 'footer_top_widget',
+        'before_widget' => '<div id="%1$s" class="widget %2$s footer-top-widget">',
         'after_widget'  => '</div>',
         'before_title'  => '<h4 class="title">',
         'after_title'   => '</h4>',
     ]);
     
     register_sidebar([
-        'name'          => 'Footer Social Widget',
-        'id'            => 'footer_social_widget',
-        'before_widget' => '<div id="%1$s" class="widget %2$s footer-social-widget">',
+        'name'          => 'Footer Bottom Widget',
+        'id'            => 'footer_bottom_widget',
+        'before_widget' => '<div id="%1$s" class="widget %2$s footer-bottom-widget">',
         'after_widget'  => '</div>',
         'before_title'  => '<h4 class="title">',
         'after_title'   => '</h4>',
