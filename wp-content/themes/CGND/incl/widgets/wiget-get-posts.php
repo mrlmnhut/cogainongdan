@@ -79,7 +79,6 @@ class WidgetGetPost extends WP_Widget{
 			<?php endif; ?>
             <div class="post-title mb-1"><?= get_the_title($the_posts[0]->ID) ?></div>
             <div class="d-flex align-items-center">
-                <span class="mr-1">Bởi</span>
 				<?= get_avatar( $the_posts[0]->post_author, 25,'', '', ['class' => 'rounded-circle mr-1']); ?>
                 <span class="post-author mr-1"><?= get_the_author_meta( 'display_name', $the_posts[0]->post_author ) ?></span>
                 <span>, <?= get_the_date('d/m/Y', $the_posts[0]->ID); ?></span>
