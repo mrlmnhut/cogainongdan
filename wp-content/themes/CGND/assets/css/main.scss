@@ -541,6 +541,12 @@ h1.page-title {
                 transition: all .4s ease;
                 opacity: 0;
             }
+
+            .logo {
+                left: 20px;
+                bottom: 20px;
+                width: 50px;
+            }
         }
     }
 }

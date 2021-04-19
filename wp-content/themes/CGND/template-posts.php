@@ -42,8 +42,10 @@
 				} else {
 					$thumbnail_url = esc_url(get_template_directory_uri());
 				} ?>
-                <a class="post-three-col mb-4" href="<?= get_permalink($the_posts[0]->ID) ?>">
-                    <div class="thumbnail-image" style="background-image: url('<?= $thumbnail_url ?>')"></div>
+                <a class="post-three-col mb-4" href="<?= get_permalink($the_posts[$item]->ID) ?>">
+                    <div class="thumbnail-image" style="background-image: url('<?= $thumbnail_url ?>')">
+                        <img class="logo position-absolute" src="<?= esc_url(get_template_directory_uri()); ?>/assets/images/logo-nobackground.png" alt="CGND"/>
+                    </div>
                     <div class="post-title mb-1"><?= get_the_title($the_posts[$item]->ID) ?></div>
                     <div class="d-flex align-items-center">
                         <span class="mr-1">Bởi</span>

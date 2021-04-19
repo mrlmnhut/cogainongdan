@@ -520,5 +520,10 @@ h1.page-title {
   transition: all 0.4s ease;
   opacity: 0;
 }
+#featured .post-three-col .thumbnail-image .logo {
+  left: 20px;
+  bottom: 20px;
+  width: 50px;
+}
 
 /*# sourceMappingURL=main.css.map */
