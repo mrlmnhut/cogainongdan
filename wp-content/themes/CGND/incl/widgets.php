@@ -37,6 +37,15 @@ function widgets(){
         'before_title'  => '<h4 class="title">',
         'after_title'   => '</h4>',
     ]);
+	
+	register_sidebar([
+		'name'          => 'Sidebar Content Widget',
+		'id'            => 'sidebar_content_widget',
+		'before_widget' => '<div id="%1$s" class="widget %2$s sidebar-content-widget">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h4 class="title">',
+		'after_title'   => '</h4>',
+	]);
 }
 
 add_action('widgets_init', 'widgets');

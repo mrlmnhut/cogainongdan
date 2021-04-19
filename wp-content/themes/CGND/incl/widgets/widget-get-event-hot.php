@@ -24,15 +24,14 @@ class WidgetGetEventHot extends WP_Widget{
      * @param array $instance
      */
     public function widget($args, $instance){
-        echo $args['before_widget']; ?><?php
         wp_reset_postdata();
         wp_reset_query();
-        $args  = [
+	    $get_events  = [
             'post_type'      => 'event',
             'order'          => 'DESC',
             'posts_per_page' => 3,
         ];
-        $query = new WP_Query($args);
+        $query = new WP_Query($get_events);
 	    echo $args['before_widget']; ?>
         <div class="slick-event-hot slick-reboot">
 	        <?php while ($query->have_posts()) : $query->the_post(); ?>
