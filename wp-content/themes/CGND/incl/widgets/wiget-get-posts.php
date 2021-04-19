@@ -71,7 +71,7 @@ class WidgetGetPost extends WP_Widget{
                 <span><?= $title ?></span>
             </div>
         <?php endif; ?>
-		<div class="mb-3">
+		<a class="mb-3 d-block" href="<?= get_permalink($the_posts[0]->ID) ?>">
 			<?php if ( has_post_thumbnail($the_posts[0]->ID) ) : ?>
 				<?= get_the_post_thumbnail( $the_posts[0]->ID,'post-thumbnail', ['class' => 'img-fluid mb-2', 'title' => get_the_title($the_posts[0]->ID)]); ?>
 			<?php else: ?>
@@ -84,7 +84,7 @@ class WidgetGetPost extends WP_Widget{
                 <span class="post-author mr-1"><?= get_the_author_meta( 'display_name', $the_posts[0]->post_author ) ?></span>
                 <span>, <?= get_the_date('d/m/Y', $the_posts[0]->ID); ?></span>
             </div>
-		</div>
+		</a>
         <div class="d-flex flex-wrap">
             <?php for ($item = 1; $item < count($the_posts); $item++): ?>
             <a class="post-two-col mb-4" href="<?= get_permalink($the_posts[$item]->ID) ?>">
